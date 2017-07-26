@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="memory"
+            type="cz.lamorak.fleky.model.Memory" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            app:imageUrl="@{memory.thumbnail}"
+            tools:background="#ccc"/>
+
+        <TextView
+            android:id="@+id/date_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/thumbnail"
+            android:layout_marginLeft="20dp"
+            android:maxLines="1"
+            app:timestamp="@{memory.timestamp}"
+            tools:text="25. 7. 2017"/>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/date_created"
+            android:layout_below="@+id/date_created"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:ellipsize="marquee"
+            android:textSize="18sp"
+            android:text="@{memory.title}"
+            tools:text="Memory title" />
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/date_created"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="8dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="@{memory.content}"
+            tools:text="Some additional notes to the memory, potentially very long text, Lorem ipsum dolor sit amet, mea ignota blandit ei"/>
+
+    </RelativeLayout>
+</layout>

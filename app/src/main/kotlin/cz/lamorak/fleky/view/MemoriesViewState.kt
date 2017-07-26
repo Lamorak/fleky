@@ -15,6 +15,22 @@ sealed class MemoriesViewState(
     class Content(memories: List<Memory>) : MemoriesViewState(memories = memories)
     class Error(error: Throwable) : MemoriesViewState(error = error)
 
+    fun hasMemories(): Boolean {
+        return memories != null && memories.isNotEmpty()
+    }
+
+    fun hasEmptyMemories(): Boolean {
+        return memories != null && memories.isEmpty()
+    }
+
+    fun hasError(): Boolean {
+        return error != null
+    }
+
+    fun errorMessage(): String {
+        return error?.message ?: ""
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is MemoriesViewState) return false
@@ -34,7 +50,7 @@ sealed class MemoriesViewState(
     }
 
     override fun toString(): String {
-        return when(this) {
+        return when (this) {
             is Loading -> "Loading"
             is Content -> "List of Memories: ${memories?.size}"
             is Error -> "Error: ${error?.message}"
