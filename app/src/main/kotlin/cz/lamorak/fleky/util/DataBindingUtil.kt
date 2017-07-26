@@ -2,6 +2,9 @@ package cz.lamorak.krev.util
 
 import android.databinding.BindingAdapter
 import android.databinding.BindingConversion
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -11,6 +14,7 @@ import android.widget.TextView
 import com.squareup.picasso.Picasso
 import cz.lamorak.fleky.adapter.MemoriesAdapter
 import cz.lamorak.fleky.model.Memory
+import java.io.File
 import java.text.SimpleDateFormat
 
 /**
@@ -48,6 +52,23 @@ object DataBindingUtil {
             Picasso.with(imageView.context.applicationContext)
                     .load(url)
                     .into(imageView)
+        } else {
+            imageView.setImageDrawable(null)
         }
+    }
+
+    @JvmStatic @BindingAdapter("imageBytes")
+    fun loadImage(imageView: ImageView, imageBytes: ByteArray?) {
+        if (imageBytes != null) {
+            val imageBitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+            imageView.setImageBitmap(imageBitmap)
+        } else {
+            imageView.setImageDrawable(null)
+        }
+    }
+
+    @JvmStatic @BindingAdapter("showButton")
+    fun hideFloatingActionButton(floatingActionButton: FloatingActionButton, show: Boolean) {
+        if (show) floatingActionButton.show() else floatingActionButton.hide()
     }
 }
