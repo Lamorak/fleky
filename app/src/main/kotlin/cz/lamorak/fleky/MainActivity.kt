@@ -2,7 +2,6 @@ package cz.lamorak.fleky
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import com.jakewharton.rxbinding2.support.v4.widget.refreshes
 import com.jakewharton.rxbinding2.view.clicks
@@ -10,10 +9,9 @@ import com.jakewharton.rxrelay2.PublishRelay
 import cz.lamorak.fleky.databinding.ActivityMainBinding
 import cz.lamorak.fleky.dependency.DaggerMainComponent
 import cz.lamorak.fleky.presenter.MemoriesPresenter
-import cz.lamorak.fleky.util.withLog
+import cz.lamorak.fleky.util.start
 import cz.lamorak.fleky.view.MemoriesViewIntent
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 import javax.inject.Inject
 
 /**
@@ -38,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         disposables = CompositeDisposable()
         disposables.addAll(
                 binding.buttonAddNew.clicks()
-                        .subscribe { onButtonClicked() },
+                        .subscribe { addNewMemory() },
 
                 binding.swipeRefresh.refreshes()
                         .map { MemoriesViewIntent.Load() }
@@ -57,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         disposables.dispose()
     }
 
-    fun onButtonClicked() {
-        Snackbar.make(binding.root, "Click", Snackbar.LENGTH_SHORT).show()
+    private fun addNewMemory() {
+        start(AddMemoryActivity::class.java)
     }
 }
