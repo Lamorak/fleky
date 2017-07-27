@@ -1,9 +1,10 @@
 package cz.lamorak.fleky.dependency
 
-import cz.lamorak.fleky.service.MemoriesService
-import cz.lamorak.fleky.service.MockMemoriesService
+import com.google.firebase.database.DatabaseReference
 import cz.lamorak.fleky.presenter.MemoriesPresenter
 import cz.lamorak.fleky.presenter.MemoriesPresenterImpl
+import cz.lamorak.fleky.service.MemoriesService
+import cz.lamorak.fleky.service.MemoriesServiceImpl
 import dagger.Module
 import dagger.Provides
 
@@ -19,7 +20,7 @@ class MainModule {
     }
 
     @Provides
-    fun provideService() : MemoriesService {
-        return MockMemoriesService()
+    fun provideService(databaseReference: DatabaseReference) : MemoriesService {
+        return MemoriesServiceImpl(databaseReference)
     }
 }
