@@ -25,6 +25,8 @@
         </activity>
 
         <activity android:name=".AddMemoryActivity" />
+
+        <activity android:name=".DetailActivity" />
     </application>
 
 </manifest>

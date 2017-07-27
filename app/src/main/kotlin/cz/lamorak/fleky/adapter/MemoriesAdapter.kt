@@ -1,12 +1,15 @@
 package cz.lamorak.fleky.adapter
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import cz.lamorak.fleky.DetailActivity
 import cz.lamorak.fleky.R
 import cz.lamorak.fleky.databinding.ItemMemoryBinding
 import cz.lamorak.fleky.model.Memory
+import cz.lamorak.fleky.util.start
 
 /**
  * Created by ondrej on 26.7.2017.
@@ -32,6 +35,9 @@ class MemoriesAdapter (private val memories: List<Memory>) : RecyclerView.Adapte
 
         fun bind(memory: Memory) {
             binding.memory = memory
+            itemView.setOnClickListener {
+                (itemView.context as Activity).start(DetailActivity::class.java, Pair("memoryId", memory.id))
+            }
         }
     }
 }
