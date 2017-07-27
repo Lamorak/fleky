@@ -10,17 +10,20 @@ import java.util.concurrent.TimeUnit
 class MockMemoriesService : MemoriesService {
 
     override fun savedMemories(): Observable<List<Memory>> {
-        return Observable.just((1..5).map { generateMockMemory(it) })
+        return Observable.just((1..5).map { generateMockMemory(it.toString()) })
                 .delay(1, TimeUnit.SECONDS)
     }
 
-    fun generateMockMemory(id: Int): Memory {
+    override fun memory(id: String): Observable<Memory> {
+        return Observable.just(generateMockMemory(id))
+    }
+
+    fun generateMockMemory(id: String): Memory {
         return Memory(
-//                id = id.toLong(),
+                id = id,
                 title = "Memory #$id",
                 content = "Lorem ipsum dolor sit amet",
                 photo = "",
-//                thumbnail = "",
                 timestamp = System.currentTimeMillis()
         )
     }

@@ -9,4 +9,5 @@ import io.reactivex.Observable
 interface MemoriesService {
 
     fun savedMemories() : Observable<List<Memory>>
+    fun memory(id: String) : Observable<Memory>
 }

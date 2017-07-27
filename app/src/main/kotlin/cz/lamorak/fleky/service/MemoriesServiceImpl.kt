@@ -27,4 +27,21 @@ class MemoriesServiceImpl @Inject constructor(private val databaseReference: Dat
             })
         }
     }
+
+    override fun memory(id: String): Observable<Memory> {
+        return Observable.create<Memory> {
+            databaseReference.child(id).addListenerForSingleValueEvent(object : ValueEventListener {
+
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val memory = dataSnapshot.getValue(Memory::class.java)!!
+                    it.onNext(memory)
+                    it.onComplete()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    it.onError(Throwable(databaseError.message))
+                }
+            })
+        }
+    }
 }
