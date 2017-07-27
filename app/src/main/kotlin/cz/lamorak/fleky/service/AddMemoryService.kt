@@ -1,13 +1,15 @@
 package cz.lamorak.fleky.service
 
-import cz.lamorak.fleky.model.MemoryDescription
+import com.google.firebase.storage.UploadTask
+import cz.lamorak.fleky.model.Memory
 import io.reactivex.Completable
+import io.reactivex.Observable
 
 /**
  * Created by ondrej on 26.7.2017.
  */
 interface AddMemoryService {
 
-    fun upload(file: ByteArray?): Completable
-    fun saveMemory(memory: MemoryDescription?): Completable
+    fun uploadMemory(filename: String, imageBytes: ByteArray): Observable<UploadTask.TaskSnapshot>
+    fun saveMemory(id: String, memory: Memory): Completable
 }

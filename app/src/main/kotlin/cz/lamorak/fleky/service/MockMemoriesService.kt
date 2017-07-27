@@ -16,11 +16,11 @@ class MockMemoriesService : MemoriesService {
 
     fun generateMockMemory(id: Int): Memory {
         return Memory(
-                id = id.toLong(),
+//                id = id.toLong(),
                 title = "Memory #$id",
                 content = "Lorem ipsum dolor sit amet",
                 photo = "",
-                thumbnail = "",
+//                thumbnail = "",
                 timestamp = System.currentTimeMillis()
         )
     }

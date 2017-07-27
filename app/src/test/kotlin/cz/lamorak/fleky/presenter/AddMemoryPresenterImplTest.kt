@@ -9,13 +9,15 @@ import cz.lamorak.fleky.view.AddMemoryViewIntent.*
 import cz.lamorak.fleky.view.AddMemoryViewState
 import cz.lamorak.fleky.view.AddMemoryViewState.*
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.observers.TestObserver
 import org.junit.Before
 
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.any
 import org.mockito.junit.MockitoJUnitRunner
 
 /**
@@ -59,8 +61,8 @@ class AddMemoryPresenterImplTest {
 
     @Test
     fun testSaveMemory() {
-        Mockito.`when`(service.upload(Mockito.any())).thenReturn(Completable.complete())
-        Mockito.`when`(service.saveMemory(Mockito.any())).thenReturn(Completable.complete())
+        `when`(service.uploadMemory(any(), any())).thenReturn(Observable.empty())
+        `when`(service.saveMemory(any(), any())).thenReturn(Completable.complete())
 
         val imageBytes = ByteArray(12)
         val description = MemoryDescription("", "", 0L)
@@ -69,7 +71,7 @@ class AddMemoryPresenterImplTest {
         viewIntents.accept(SaveMemory(imageBytes, description))
 
         observer.assertConnected()
-        observer.assertValues(Uploading(), Finished())
+        observer.assertValues(Uploading(100), Finished())
     }
 
     fun bindPresenter() {
