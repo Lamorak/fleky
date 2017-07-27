@@ -9,3 +9,4 @@
 /captures
 .externalNativeBuild
 extras/keystore.properties
+app/google-services\.json
