@@ -9,5 +9,5 @@ import javax.inject.Singleton
  * Created by ondrej on 26.7.2017.
  */
 @Singleton
-@Component(modules = arrayOf(AddMemoryModule::class))
+@Component(modules = arrayOf(AddMemoryModule::class, FirebaseModule::class))
 interface AddMemoryComponent : AndroidInjector<AddMemoryActivity>

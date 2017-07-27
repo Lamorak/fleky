@@ -9,5 +9,5 @@ import javax.inject.Singleton
  * Created by ondrej on 25.7.2017.
  */
 @Singleton
-@Component(modules = arrayOf(MainModule::class, RetrofitModule::class))
+@Component(modules = arrayOf(MainModule::class, FirebaseModule::class))
 interface MainComponent : AndroidInjector<MainActivity>
