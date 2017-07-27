@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +23,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddMemoryActivity" />
+        <activity android:name=".AddMemoryActivity"
+            android:label="@string/title_add_memory" />
 
         <activity android:name=".DetailActivity" />
     </application>

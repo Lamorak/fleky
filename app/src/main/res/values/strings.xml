@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name" translatable="false">fleky</string>
+
+    <string name="title_add_memory">Add new memory</string>
+
     <string name="memories_empty">You don\'t have any memories\nStart by adding some!</string>
 
     <string name="hint_title">Title</string>
