@@ -85,7 +85,7 @@ class AddMemoryActivity : AppCompatActivity() {
     }
 
     private fun memoryDescription(): MemoryDescription {
-        return MemoryDescription(binding.title.text.toString(), binding.comment.text.toString(), 0)
+        return MemoryDescription(binding.title.text.toString(), binding.comment.text.toString(), System.currentTimeMillis())
     }
 
     private fun startCamera() {
